@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<menu>
+  <item>
+    <path>civicrm/admin/logviewer</path>
+    <page_callback>CRM_Logviewer_Page_LogViewer</page_callback>
+    <title>LogViewer</title>
+    <access_arguments>access CiviCRM</access_arguments>
+  </item>
+</menu>
