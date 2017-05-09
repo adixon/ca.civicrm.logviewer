@@ -3,7 +3,13 @@
   <item>
     <path>civicrm/admin/logviewer</path>
     <page_callback>CRM_Logviewer_Page_LogViewer</page_callback>
-    <title>LogViewer</title>
-    <access_arguments>access CiviCRM</access_arguments>
+    <title>Log Viewer</title>
+    <access_arguments>administer CiviCRM</access_arguments>
+  </item>
+  <item>
+    <path>civicrm/admin/logviewer/logentry</path>
+    <page_callback>CRM_Logviewer_Page_LogViewEntry</page_callback>
+    <title>Log Entry View</title>
+    <access_arguments>administer CiviCRM</access_arguments>
   </item>
 </menu>

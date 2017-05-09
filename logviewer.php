@@ -138,14 +138,29 @@ function logviewer_civicrm_preProcess($formName, &$form) {
  *
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_navigationMenu
  *
-function logviewer_civicrm_navigationMenu(&$menu) {
-  _logviewer_civix_insert_navigation_menu($menu, NULL, array(
-    'label' => ts('The Page', array('domain' => 'ca.civicrm.logviewer')),
-    'name' => 'the_page',
-    'url' => 'civicrm/the-page',
-    'permission' => 'access CiviReport,access CiviContribute',
-    'operator' => 'OR',
-    'separator' => 0,
-  ));
-  _logviewer_civix_navigationMenu($menu);
-} // */
+ */
+function logviewer_civicrm_navigationMenu(&$navMenu) {
+  $pages = array(
+    'admin_page' => array(
+      'label'      => ts('View Log', array('domain' => 'ca.civicrm.logviewer')),
+      'name'       => 'Log Viewer',
+      'url' => 'civicrm/admin/logviewer',
+      'parent' => array('Administer', 'Administration Console'),
+      'permission' => 'administer CiviCRM',
+      'operator' => 'AND',
+      'separator'  => NULL,
+      'active'     => 1,
+    ),
+  );
+  foreach ($pages as $item) {
+    // Check that our item doesn't already exist.
+    $menu_item_search = array('url' => $item['url']);
+    $menu_items = array();
+    CRM_Core_BAO_Navigation::retrieve($menu_item_search, $menu_items);
+    if (empty($menu_items)) {
+      $path = implode('/', $item['parent']);
+      unset($item['parent']);
+      _logviewer_civix_insert_navigation_menu($navMenu, $path, $item);
+    }
+  }
+}
