@@ -3,6 +3,9 @@
 class CRM_Logviewer_Page_LogViewEntry extends CRM_Core_Page {
 
   public function run() {
+    // CRM_Core_Resources::singleton()->addScriptUrl('https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js');
+    CRM_Core_Resources::singleton()->addScriptUrl('//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js', 10, 'page-header');
+    CRM_Core_Resources::singleton()->addStyleUrl('//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/default.min.css');
     $config = CRM_Core_Config::singleton();
     $file_log = CRM_Core_Error::createDebugLogger();
     // print_r($file_log); die();
