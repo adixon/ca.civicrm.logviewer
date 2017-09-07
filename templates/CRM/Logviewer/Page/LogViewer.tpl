@@ -1,8 +1,6 @@
 <h3>Log Viewer</h3>
 
-<p>The current time is {$currentTime}</p>
-
-<p>{ts 1=$currentTime}(In your native language) The current time is %1.{/ts}</p>
+<p>{ts 1=$currentTime}The current time is %1.{/ts}</p>
 
 {if $logEntries}
     <table>
