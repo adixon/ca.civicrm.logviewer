@@ -4,10 +4,8 @@ class CRM_Logviewer_Page_LogViewer extends CRM_Core_Page {
 
   public function run() {
     $this->assign('currentTime', date('Y-m-d H:i:s'));
-    $config = CRM_Core_Config::singleton();
     $file_log = CRM_Core_Error::createDebugLogger();
     $logFileName = $file_log->_filename;
-    $logFileFormat = $file_log->_lineFormat;
     $file_log->close();
     $this->assign('fileName', $logFileName);
     $entries = array();
