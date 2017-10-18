@@ -19,4 +19,6 @@
     </tr>
     {/foreach}
     </table>
+{else}
+  <p>{ts 1=$fileName}Unable to read entries from logfile at %1{/ts}</p>
 {/if}
