@@ -45,6 +45,7 @@ class CRM_Logviewer_Page_LogViewEntry extends CRM_Core_Page {
     }
     fclose($handle);
 
+    $prev_a = $next_a = '';
     if($prevLine){
       $prev_url = CRM_Utils_System::url('civicrm/admin/logviewer/logentry', $query = 'lineNumber='.$prevLine);
       $prev_a = '<a href="'.$prev_url.'">&#60;&#60; Prev</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
