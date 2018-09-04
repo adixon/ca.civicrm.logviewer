@@ -15,24 +15,28 @@ class CRM_Logviewer_Page_LogViewEntry extends CRM_Core_Page {
     $this->assign('fileName', $logFileName);
     $handle = fopen($logFileName,'r') or die ('File opening failed');
     $entry = '';
-    $line = 0;
+    $line = $prevLine = $nextLine = 0;
     $lineNumber = CRM_Utils_Array::value('lineNumber', $_GET);
     if (empty($lineNumber)) { die('Invalid lineNumber'); }
     while (!feof($handle)) {
       $line++;
       $dd = fgets($handle);
       if ($line < $lineNumber) {
+        if (preg_match("/^[A-Z][a-z]{2} [0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}$/",substr($dd,0,15))) {
+          $prevLine = $line;
+        }
         continue;
       }
       elseif ($line == $lineNumber) {
         $date = substr($dd,0,15);
         $this->assign('dateTime', $date);
         $entry = substr($dd, 16);
-      } 
+      }
       else {
         if (strlen($dd) >= 15 && (' ' != $dd[0])) {
           $date = substr($dd,0,15);
           if (preg_match("/^[A-Z][a-z]{2} [0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}$/",$date)) {
+            $nextLine = $line;
             break;
           }
         }
@@ -40,6 +44,11 @@ class CRM_Logviewer_Page_LogViewEntry extends CRM_Core_Page {
       }
     }
     fclose($handle);
+
+    $prev_url = !$prevLine ? '#' : CRM_Utils_System::url('civicrm/admin/logviewer/logentry', $query = 'lineNumber='.$prevLine);
+    $next_url = !$nextLine ? '#' : CRM_Utils_System::url('civicrm/admin/logviewer/logentry', $query = 'lineNumber='.$nextLine);
+    $this->assign('prevURL', $prev_url);
+    $this->assign('nextURL', $next_url);
     $this->assign('logEntry', $entry);
 
     parent::run();
