@@ -9,4 +9,6 @@ It's useful for quick debugging during development and testing, and also useful 
 
 It uses a javascript library (highlight.js) for minimally making the output look nicer. It might break in other languages and/or non-default time/date formats, since it relies on regular expressions for parsing the log output. 
 
+To access the log viewer go to `Administer > Administration Console > View Log`.
+
 Patches and bug reports welcomed.
