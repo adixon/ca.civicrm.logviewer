@@ -1,5 +1,7 @@
 <?php
 
+use CRM_Logviewer_ExtensionUtil as E;
+
 class CRM_Logviewer_Page_LogViewEntry extends CRM_Core_Page {
 
   public function run() {
@@ -48,11 +50,11 @@ class CRM_Logviewer_Page_LogViewEntry extends CRM_Core_Page {
     $prev_a = $next_a = '';
     if($prevLine){
       $prev_url = CRM_Utils_System::url('civicrm/admin/logviewer/logentry', $query = 'lineNumber='.$prevLine);
-      $prev_a = '<a href="'.$prev_url.'">&#60;&#60; Prev</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
+      $prev_a = '<a class="button" href="'.$prev_url.'"><span><i class="crm-i fa-chevron-left" aria-hidden="true"></i> ' . E::ts('Prev') . '</span></a>';
     }
     if($nextLine){
       $next_url = CRM_Utils_System::url('civicrm/admin/logviewer/logentry', $query = 'lineNumber='.$nextLine);
-      $next_a = '<a href="'.$next_url.'">Next &#62;&#62;</a>';
+      $next_a = '<a class="button" href="'.$next_url.'"><span><i class="crm-i fa-chevron-right" aria-hidden="true"></i> ' . E::ts('Next') . '</span></a>';
     }
     $this->assign('prevURL', $prev_a);
     $this->assign('nextURL', $next_a);

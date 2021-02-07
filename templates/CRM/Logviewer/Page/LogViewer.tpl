@@ -1,4 +1,4 @@
-<h3>Log Viewer</h3>
+{crmButton p='civicrm/admin/logviewer' q='reset=1' icon='refresh'}{ts}Refresh{/ts}{/crmButton} {$prevURL} {$nextURL}
 
 <p>{ts 1=$currentTime}The current time is %1.{/ts}</p>
 
