@@ -1,6 +1,7 @@
 <?php
 
 require_once 'logviewer.civix.php';
+use CRM_Logviewer_ExtensionUtil as E;
 
 /**
  * Implements hook_civicrm_config().
@@ -87,19 +88,6 @@ function logviewer_civicrm_managed(&$entities) {
 }
 
 /**
- * Implements hook_civicrm_caseTypes().
- *
- * Generate a list of case-types.
- *
- * Note: This hook only runs in CiviCRM 4.4+.
- *
- * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_caseTypes
- */
-function logviewer_civicrm_caseTypes(&$caseTypes) {
-  _logviewer_civix_civicrm_caseTypes($caseTypes);
-}
-
-/**
  * Implements hook_civicrm_angularModules().
  *
  * Generate a list of Angular modules.
@@ -122,17 +110,6 @@ function logviewer_civicrm_alterSettingsFolders(&$metaDataFolders = NULL) {
   _logviewer_civix_civicrm_alterSettingsFolders($metaDataFolders);
 }
 
-// --- Functions below this ship commented out. Uncomment as required. ---
-
-/**
- * Implements hook_civicrm_preProcess().
- *
- * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_preProcess
- *
-function logviewer_civicrm_preProcess($formName, &$form) {
-
-} // */
-
 /**
  * Implements hook_civicrm_navigationMenu().
  *
@@ -140,22 +117,22 @@ function logviewer_civicrm_preProcess($formName, &$form) {
  *
  */
 function logviewer_civicrm_navigationMenu(&$navMenu) {
-  $pages = array(
-    'admin_page' => array(
-      'label'      => ts('View Log', array('domain' => 'ca.civicrm.logviewer')),
+  $pages = [
+    'admin_page' => [
+      'label'      => E::ts('View Log'),
       'name'       => 'Log Viewer',
       'url' => 'civicrm/admin/logviewer',
-      'parent' => array('Administer', 'Administration Console'),
+      'parent' => ['Administer', 'Administration Console'],
       'permission' => 'administer CiviCRM',
       'operator' => 'AND',
       'separator'  => NULL,
       'active'     => 1,
-    ),
-  );
+    ],
+  ];
   foreach ($pages as $item) {
     // Check that our item doesn't already exist.
-    $menu_item_search = array('url' => $item['url']);
-    $menu_items = array();
+    $menu_item_search = ['url' => $item['url']];
+    $menu_items = [];
     CRM_Core_BAO_Navigation::retrieve($menu_item_search, $menu_items);
     if (empty($menu_items)) {
       $path = implode('/', $item['parent']);
