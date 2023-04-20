@@ -56,6 +56,8 @@ class CRM_Logviewer_Page_LogViewEntry extends CRM_Core_Page {
       $next_url = CRM_Utils_System::url('civicrm/admin/logviewer/logentry', $query = 'lineNumber='.$nextLine);
       $next_a = '<a class="button" href="'.$next_url.'"><span><i class="crm-i fa-chevron-right" aria-hidden="true"></i> ' . E::ts('Next') . '</span></a>';
     }
+    $entry = htmlentities($entry, ENT_QUOTES, 'UTF-8');
+    
     $this->assign('prevURL', $prev_a);
     $this->assign('nextURL', $next_a);
     $this->assign('logEntry', $entry);
