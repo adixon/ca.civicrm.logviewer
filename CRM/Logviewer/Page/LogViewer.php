@@ -16,9 +16,9 @@ class CRM_Logviewer_Page_LogViewer extends CRM_Core_Page {
         $line++;
         $dd = fgets($handle);
         if (strlen($dd) >= 15 && (' ' != $dd[0])) {
-          // Also support localized dates such as: "fév 14 12:51:13"
-          $date = mb_substr($dd,0,15);
-          if (preg_match("/^\w{3} [0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}$/u",$date)) {
+          // Also support localized dates such as: "fév 14 12:51:13" or "juill. 05 15:50:12"
+          if (preg_match("/^(\w+\.? [0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2})/u", $dd, $matches)) {
+            $date = $matches[1];
             $entry_url = CRM_Utils_System::url('civicrm/admin/logviewer/logentry', $query = 'lineNumber='.$line);
             $entries[$line] = array('lineNumber' => '<a href="'.$entry_url.'">'.$line.'</a>', 'dateTime' => $date, 'message' => substr($dd,16));
           }
