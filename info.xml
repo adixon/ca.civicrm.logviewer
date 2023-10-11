@@ -19,8 +19,17 @@
   <compatibility>
     <ver>5.28</ver>
   </compatibility>
-  <comments>View the most recent CiviCRM debug logfile, useful for quick access to recent errors or warnings.  The log is accessed via the menu entry 'Administer > Administration Console > View Log'.</comments>
+  <comments>View the most recent CiviCRM debug logfile, useful for quick access to recent errors or warnings.  The log is accessed via the menu entry 'Administer &gt; Administration Console &gt; View Log'.</comments>
   <civix>
     <namespace>CRM/Logviewer</namespace>
+    <format>23.02.1</format>
   </civix>
+  <mixins>
+    <mixin>menu-xml@1.0.0</mixin>
+    <mixin>smarty-v2@1.0.1</mixin>
+  </mixins>
+  <classloader>
+    <psr0 prefix="CRM_" path="."/>
+    <psr4 prefix="Civi\" path="Civi"/>
+  </classloader>
 </extension>
