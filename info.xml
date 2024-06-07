@@ -13,8 +13,8 @@
     <url desc="Documentation">https://github.com/adixon/ca.civicrm.logviewer/blob/master/README.md</url>
     <url desc="Licensing">http://www.gnu.org/licenses/agpl-3.0.html</url>
   </urls>
-  <releaseDate>2023-12-08</releaseDate>
-  <version>2.0</version>
+  <releaseDate>2024-06-07</releaseDate>
+  <version>2.1.0</version>
   <develStage>stable</develStage>
   <compatibility>
     <ver>5.67</ver>

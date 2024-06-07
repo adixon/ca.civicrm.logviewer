@@ -79,13 +79,6 @@ class CRM_Logviewer_ExtensionUtil {
 
 use CRM_Logviewer_ExtensionUtil as E;
 
-function _logviewer_civix_mixin_polyfill() {
-  if (!class_exists('CRM_Extension_MixInfo')) {
-    $polyfill = __DIR__ . '/mixin/polyfill.php';
-    (require $polyfill)(E::LONG_NAME, E::SHORT_NAME, E::path());
-  }
-}
-
 /**
  * (Delegated) Implements hook_civicrm_config().
  *
@@ -101,7 +94,7 @@ function _logviewer_civix_civicrm_config($config = NULL) {
   $extRoot = __DIR__ . DIRECTORY_SEPARATOR;
   $include_path = $extRoot . PATH_SEPARATOR . get_include_path();
   set_include_path($include_path);
-  _logviewer_civix_mixin_polyfill();
+  // Based on <compatibility>, this does not currently require mixin/polyfill.php.
 }
 
 /**
@@ -111,7 +104,7 @@ function _logviewer_civix_civicrm_config($config = NULL) {
  */
 function _logviewer_civix_civicrm_install() {
   _logviewer_civix_civicrm_config();
-  _logviewer_civix_mixin_polyfill();
+  // Based on <compatibility>, this does not currently require mixin/polyfill.php.
 }
 
 /**
@@ -121,7 +114,7 @@ function _logviewer_civix_civicrm_install() {
  */
 function _logviewer_civix_civicrm_enable(): void {
   _logviewer_civix_civicrm_config();
-  _logviewer_civix_mixin_polyfill();
+  // Based on <compatibility>, this does not currently require mixin/polyfill.php.
 }
 
 /**
