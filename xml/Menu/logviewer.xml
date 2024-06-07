@@ -7,6 +7,12 @@
     <access_arguments>administer CiviCRM</access_arguments>
   </item>
   <item>
+    <path>civicrm/admin/logviewer/download</path>
+    <page_callback>CRM_Logviewer_Page_LogDownload</page_callback>
+    <title>Log Viewer: Download</title>
+    <access_arguments>administer CiviCRM</access_arguments>
+  </item>
+  <item>
     <path>civicrm/admin/logviewer/logentry</path>
     <page_callback>CRM_Logviewer_Page_LogViewEntry</page_callback>
     <title>Log Entry View</title>
