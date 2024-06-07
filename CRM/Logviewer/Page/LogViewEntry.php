@@ -22,7 +22,7 @@ class CRM_Logviewer_Page_LogViewEntry extends CRM_Core_Page {
       $line++;
       $dd = fgets($handle);
       if ($line < $lineNumber) {
-        if (preg_match("/^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}:[0-9]{2}.\d+/", $dd)) {
+        if (preg_match("/^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}.\d+/", $dd)) {
           $prevLine = $line;
         }
         continue;
@@ -35,7 +35,7 @@ class CRM_Logviewer_Page_LogViewEntry extends CRM_Core_Page {
       else {
         if (strlen($dd) >= 25 && (' ' != $dd[0])) {
           $date = substr($dd, 0, 24);
-          if (preg_match("/^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}:[0-9]{2}.\d+$/",$date)) {
+          if (preg_match("/^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}.\d+$/",$date)) {
             $nextLine = $line;
             break;
           }
