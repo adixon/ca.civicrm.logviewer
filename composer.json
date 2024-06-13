@@ -1,0 +1,12 @@
+{
+  "name": "civicrm/logviewer",
+  "description": "CiviCRM Log Viewer",
+  "license": "AGPL-3.0-only",
+  "type": "civicrm-ext",
+  "authors": [
+      {
+          "name": "Alan Dixon",
+          "email": "info@blackflysolutions.ca"
+      }
+  ]
+}
