@@ -17,7 +17,7 @@
   <version>2.1.0</version>
   <develStage>stable</develStage>
   <compatibility>
-    <ver>5.67</ver>
+    <ver>5.76</ver>
   </compatibility>
   <comments>View the most recent CiviCRM debug logfile, useful for quick access to recent errors or warnings.  The log is accessed via the menu entry 'Administer &gt; Administration Console &gt; View Log'.</comments>
   <civix>

@@ -9,8 +9,7 @@ class CRM_Logviewer_Page_LogViewEntry extends CRM_Core_Page {
     CRM_Core_Resources::singleton()->addScriptUrl('//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js', 10, 'page-header');
     CRM_Core_Resources::singleton()->addStyleUrl('//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/default.min.css');
     $file_log = CRM_Core_Error::createDebugLogger();
-    $logFileName = $file_log->_filename;
-    $logFileFormat = $file_log->_lineFormat;
+    $logFileName = CRM_Core_Error::generateLogFileName('');
     $file_log->close();
     $this->assign('fileName', $logFileName);
     $handle = fopen($logFileName,'r') or die ('File opening failed');
