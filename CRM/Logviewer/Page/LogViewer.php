@@ -34,7 +34,7 @@ class CRM_Logviewer_Page_LogViewer extends CRM_Core_Page {
 
       $filesize = filesize($logFileName);
       $sz = 'BKMGTP';
-      $factor = floor((strlen($filesize) - 1) / 3);
+      $factor = (int) floor((strlen($filesize) - 1) / 3);
       $filesize = sprintf("%.2f", $filesize / pow(1024, $factor)) . @$sz[$factor];
       $this->assign('filesize', $filesize);
     }
