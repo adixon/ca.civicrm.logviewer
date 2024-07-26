@@ -4,7 +4,7 @@ class CRM_Logviewer_Page_LogDownload extends CRM_Core_Page {
 
   public function run() {
     $file_log = CRM_Core_Error::createDebugLogger();
-    $logFileName = $file_log->_filename;
+    $logFileName = is_callable(['CRM_Core_Error', 'generateLogFileName']) ? \CRM_Core_Error::generateLogFileName('') : $file_log->_filename;
     $file_log->close();
 
     //Mark as a plain-text file.

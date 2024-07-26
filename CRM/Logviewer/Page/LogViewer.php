@@ -5,7 +5,7 @@ class CRM_Logviewer_Page_LogViewer extends CRM_Core_Page {
   public function run() {
     $this->assign('currentTime', date('Y-m-d H:i:s'));
     $file_log = CRM_Core_Error::createDebugLogger();
-    $logFileName = $file_log->_filename;
+    $logFileName = is_callable(['CRM_Core_Error', 'generateLogFileName']) ? \CRM_Core_Error::generateLogFileName('') : $file_log->_filename;
     $file_log->close();
     $this->assign('fileName', $logFileName);
     $entries = [];
