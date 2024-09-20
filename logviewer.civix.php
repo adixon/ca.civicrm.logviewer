@@ -75,6 +75,7 @@ class CRM_Logviewer_ExtensionUtil {
     return self::CLASS_PREFIX . '_' . str_replace('\\', '_', $suffix);
   }
 
+
 }
 
 use CRM_Logviewer_ExtensionUtil as E;
