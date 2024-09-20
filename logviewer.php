@@ -37,27 +37,14 @@ function logviewer_civicrm_enable() {
  *
  */
 function logviewer_civicrm_navigationMenu(&$navMenu) {
-  $pages = [
-    'admin_page' => [
-      'label'      => E::ts('View Log'),
-      'name'       => 'Log Viewer',
-      'url' => 'civicrm/admin/logviewer',
-      'parent' => ['Administer', 'Administration Console'],
-      'permission' => 'administer CiviCRM',
-      'operator' => 'AND',
-      'separator'  => NULL,
-      'active'     => 1,
-    ],
-  ];
-  foreach ($pages as $item) {
-    // Check that our item doesn't already exist.
-    $menu_item_search = ['url' => $item['url']];
-    $menu_items = [];
-    CRM_Core_BAO_Navigation::retrieve($menu_item_search, $menu_items);
-    if (empty($menu_items)) {
-      $path = implode('/', $item['parent']);
-      unset($item['parent']);
-      _logviewer_civix_insert_navigation_menu($navMenu, $path, $item);
-    }
-  }
+  _logviewer_civix_insert_navigation_menu($navMenu, 'Administer/Administration Console', [
+    'label' => E::ts('View Log'),
+    'name' => 'Log Viewer',
+    'url' => 'civicrm/admin/logviewer',
+    'permission' => 'administer CiviCRM',
+    'operator' => 'AND',
+    'separator' => NULL,
+    'active' => 1,
+  ]);
+  _logviewer_civix_navigationMenu($menu);
 }
