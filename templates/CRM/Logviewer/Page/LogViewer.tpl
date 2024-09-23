@@ -1,7 +1,7 @@
 <p>{ts 1=$currentTime}The current time is %1.{/ts}</p>
 <p>{ts 1=$fileName}Logfile: %1{/ts}</p>
 
-<form action="/civicrm/admin/logviewer" method="post" name="post" id="post" class="CRM_Logviewer_Page_LogViewer">
+<form action="{crmURL p='civicrm/admin/logviewer'}" method="post" name="post" id="post" class="CRM_Logviewer_Page_LogViewer">
   <div class="crm-section">
     <div class="label"><label for="severity">Severity</label></div>
     <div class="content">
