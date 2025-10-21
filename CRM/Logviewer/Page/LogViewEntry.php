@@ -12,11 +12,13 @@ class CRM_Logviewer_Page_LogViewEntry extends CRM_Core_Page {
     $logFileName = is_callable(['CRM_Core_Error', 'generateLogFileName']) ? \CRM_Core_Error::generateLogFileName('') : $file_log->_filename;
     $file_log->close();
     $this->assign('fileName', $logFileName);
-    $handle = fopen($logFileName,'r') or die ('File opening failed');
+    $handle = fopen($logFileName, 'r') or die('File opening failed');
     $entry = '';
     $line = $prevLine = $nextLine = 0;
     $lineNumber = $_GET['lineNumber'] ?? NULL;
-    if (empty($lineNumber)) { die('Invalid lineNumber'); }
+    if (empty($lineNumber)) {
+      die('Invalid lineNumber');
+    }
     while (!feof($handle)) {
       $line++;
       $dd = fgets($handle);
@@ -34,7 +36,7 @@ class CRM_Logviewer_Page_LogViewEntry extends CRM_Core_Page {
       else {
         if (strlen($dd) >= 25 && (' ' != $dd[0])) {
           $date = substr($dd, 0, 24);
-          if (preg_match("/^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}.\d+$/",$date)) {
+          if (preg_match("/^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}.\d+$/", $date)) {
             $nextLine = $line;
             break;
           }
@@ -45,16 +47,16 @@ class CRM_Logviewer_Page_LogViewEntry extends CRM_Core_Page {
     fclose($handle);
 
     $prev_a = $next_a = '';
-    if($prevLine){
-      $prev_url = CRM_Utils_System::url('civicrm/admin/logviewer/logentry', $query = 'lineNumber='.$prevLine);
-      $prev_a = '<a class="button" href="'.$prev_url.'"><span><i class="crm-i fa-chevron-left" aria-hidden="true"></i> ' . E::ts('Prev') . '</span></a>';
+    if ($prevLine) {
+      $prev_url = CRM_Utils_System::url('civicrm/admin/logviewer/logentry', $query = 'lineNumber=' . $prevLine);
+      $prev_a = '<a class="button" href="' . $prev_url . '"><span><i class="crm-i fa-chevron-left" aria-hidden="true"></i> ' . E::ts('Prev') . '</span></a>';
     }
-    if($nextLine){
-      $next_url = CRM_Utils_System::url('civicrm/admin/logviewer/logentry', $query = 'lineNumber='.$nextLine);
-      $next_a = '<a class="button" href="'.$next_url.'"><span><i class="crm-i fa-chevron-right" aria-hidden="true"></i> ' . E::ts('Next') . '</span></a>';
+    if ($nextLine) {
+      $next_url = CRM_Utils_System::url('civicrm/admin/logviewer/logentry', $query = 'lineNumber=' . $nextLine);
+      $next_a = '<a class="button" href="' . $next_url . '"><span><i class="crm-i fa-chevron-right" aria-hidden="true"></i> ' . E::ts('Next') . '</span></a>';
     }
     $entry = htmlentities($entry, ENT_QUOTES, 'UTF-8');
-    
+
     $this->assign('prevURL', $prev_a);
     $this->assign('nextURL', $next_a);
     $this->assign('logEntry', $entry);
