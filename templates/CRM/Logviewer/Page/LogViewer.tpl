@@ -42,7 +42,7 @@
           <td>{$row.lineNumber}</td>
           <td>{$row.severity}</td>
           <td>{$row.dateTime}</td>
-          <td>{$row.message}</td>
+          <td>{$row.message|escape}</td>
           <td></td>
         </tr>
       {/foreach}
