@@ -13,6 +13,14 @@
     </div>
     <div class="clear"></div>
   </div>
+  <div class="crm-section">
+    <div class="label"><label for="filter_text">Filter</label></div>
+    <div class="content">
+      <input size="30" maxlength="255" name="filter_text" id="filter_text" type="text"
+         value="{$filter_text}" class="big crm-form-text valid" >
+    </div>
+    <div class="clear"></div>
+  </div>
 
   <div class="crm-submit-buttons">
     <button class="crm-form-submit default validate crm-button crm-button-type-submit btn-primary" value="1" type="submit" name="logviewer_submit" id="logviewer_submit">
