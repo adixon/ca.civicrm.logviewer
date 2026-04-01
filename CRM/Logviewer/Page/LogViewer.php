@@ -39,9 +39,11 @@ class CRM_Logviewer_Page_LogViewer extends CRM_Core_Page {
     if (array_key_exists('logviewer_reset', $_POST)) {
       // Simulate reset behaviour.
       $filter_severity = [];
+      $filter_text = '';
     }
     else {
       $filter_severity = $_POST['severity'] ?? [];
+      $filter_text = $_POST['filter_text'] ?? '';
     }
 
     // Build options.
@@ -59,6 +61,8 @@ class CRM_Logviewer_Page_LogViewer extends CRM_Core_Page {
     foreach (array_keys($this->logLevels) as $log_level) {
       $severities_found[$log_level] = 0;
     }
+
+    $this->assign('filter_text', $filter_text);
 
     // Get Log entries.
     $entries = [];
@@ -96,9 +100,16 @@ class CRM_Logviewer_Page_LogViewer extends CRM_Core_Page {
               $severities_found[$severity] = 1;
             }
 
-            if (empty($filter_severity)
-              || in_array($severity, $filter_severity)
+            $exclude_line = FALSE;
+            if (!empty($filter_severity) && !in_array($severity, $filter_severity)) {
+              $exclude_line = TRUE;
+            }
+            elseif (!empty($filter_text)
+              && strpos($msg, $filter_text) === FALSE
             ) {
+              $exclude_line = TRUE;
+            }
+            if (!$exclude_line) {
               $entries[$line] = [
                 'lineNumber' => '<a href="' . $entry_url . '">' . $line . '</a>',
                 'dateTime' => $date,
