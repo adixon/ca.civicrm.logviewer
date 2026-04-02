@@ -125,10 +125,36 @@ class CRM_Logviewer_Page_LogViewer extends CRM_Core_Page {
     }
     $this->assign('logEntries', $entries);
 
+    $filesize = filesize($this->logFileName);
+    if ($filesize !== FALSE) {
+      $this->assign('filesize', $this->readableBytes($filesize));
+    }
+
     // Add JS to use Datatable.
     CRM_Core_Resources::singleton()->addScriptFile(E::LONG_NAME, 'js/logviewer.js'); #, 1, 'html-header');
 
     parent::run();
+  }
+
+  /**
+   * Converts a long string of bytes into a readable format e.g. KB, MB, GB, TB, YB
+   *
+   * @param int|string $bytes
+   *   The number of bytes.
+   *
+   * @return string
+   *   Human readable file size, e.g.:
+   *   - 1000 -> '1000 B'
+   *   - 9874321 -> '9.42 MB'
+   *   - '10000000000' -> '9.31 GB'
+   *   - 712893712304234 -> '648.37 TB'
+   *   - 6212893712323224 -> '5.52 PB'
+   */
+  protected function readableBytes(int|string $bytes): string {
+    $i = floor(log($bytes) / log(1024));
+    $sizes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+
+    return sprintf('%.02F', $bytes / pow(1024, $i)) * 1 . ' ' . $sizes[$i];
   }
 
   /**
