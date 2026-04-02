@@ -149,6 +149,8 @@ class CRM_Logviewer_Page_LogViewer extends CRM_Core_Page {
    *   - '10000000000' -> '9.31 GB'
    *   - 712893712304234 -> '648.37 TB'
    *   - 6212893712323224 -> '5.52 PB'
+   *
+   * @see https://stackoverflow.com/questions/15188033/human-readable-file-size
    */
   protected function readableBytes(int|string $bytes): string {
     $i = floor(log($bytes) / log(1024));
