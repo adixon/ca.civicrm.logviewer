@@ -1,5 +1,11 @@
 <p>{ts 1=$currentTime}The current time is %1.{/ts}</p>
-<p>{ts 1=$fileName}Logfile: %1{/ts}</p>
+<p>{ts 1=$fileName}Logfile: %1{/ts}
+  {if $filesize}
+    ({$filesize})
+  {else}
+    <span class="crm-error">({ts}Error getting file size){/ts}</span>
+  {/if}
+</p>
 
 <form action="{crmURL p='civicrm/admin/logviewer'}" method="post" name="post" id="post" class="CRM_Logviewer_Page_LogViewer">
   <div class="crm-section">
